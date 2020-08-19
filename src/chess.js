@@ -6,7 +6,10 @@ const populateBoard = board => {
     // String that will decide the column letter for each square.
     let coloumnLetter = '';
     // Creates 64 "squares" that will populate the board.
-    for (let i = 0; i < 8; index++) {
+    for (let i = 0; i < 8; i++) {
+        // Changes the background boolean to the opposite so that each new row has a different color to start.
+        isBackgroundBlack = !isBackgroundBlack;
+
         for (let z = 1; z < 9; z++) {
             let square = document.createElement('div');
 
@@ -27,6 +30,18 @@ const populateBoard = board => {
 
             // Assigns a column number as well as row number to the square's id.
             square.id = `${coloumnLetter}${z}`;
+
+            // Calculates the width and height of the square using the parent div's width as reference.
+            let w = board.getBoundingClientRect().width / 9;
+            square.style.height = `${w}px`;
+
+            // Sets overflow of the parent div to hidden.
+            board.style.display = 'grid';
+            // Adds 'float left' to square's styling.
+            board.style.gridTemplateColumns = `${w}px ${w}px ${w}px ${w}px ${w}px ${w}px ${w}px ${w}px`;
+
+            // Appends the square to the board div.
+            board.appendChild(square);
         }
     }
 }
@@ -36,7 +51,7 @@ const coloumNameAssignment = columnNumber => {
     let letter = '';
 
     // Switch case to decide the coloum letter.
-    switch (i) {
+    switch (columnNumber) {
         case 0:
             letter = 'A';
             break;
@@ -70,9 +85,13 @@ const coloumNameAssignment = columnNumber => {
 }
 
 const testBoardCreation = () => {
-    board.childNodes.forEach(element => {
-        console.log(element);
-    });
+    // Makes sure each div is created.
+    // board.childNodes.forEach(element => {
+    //     console.log(element);
+    // });
+
+    // Counts the divs.
+    console.log(board.childNodes.length);
 }
 
 populateBoard(board);

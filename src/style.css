@@ -5,6 +5,11 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+h2{
+    color: cornsilk;
+    font-size: 24pt;
+}
+
 a {
     color: #EEE;
     text-decoration: none;
@@ -91,4 +96,8 @@ footer {
     flex: 1;
     background-color: #EEE;
     height: 775px;
+}
+
+.about {
+    flex: 4;
 }

@@ -81,7 +81,7 @@ footer {
     align-items: center;
     text-align: center;
     background-color: #111;
-    height: 775px;
+    height: 940px;
 }
 
 .menu h2 {
@@ -95,7 +95,7 @@ footer {
 .console {
     flex: 1;
     background-color: #EEE;
-    height: 775px;
+    height: 940px;
 }
 
 .about {

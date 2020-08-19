@@ -4,7 +4,8 @@
   "description": "Front end for Chess JS",
   "main": "index.js",
   "dependencies": {
-    "chess.js": "^0.11.0"
+    "chess.js": "^0.11.0",
+    "http-server": "^0.12.3"
   },
   "devDependencies": {},
   "scripts": {

@@ -32,7 +32,7 @@ const populateBoard = board => {
             square.id = `${coloumnLetter}${z}`;
 
             // Calculates the width and height of the square using the parent div's width as reference.
-            let w = board.getBoundingClientRect().width / 9;
+            let w = board.getBoundingClientRect().width / 11;
             square.style.height = `${w}px`;
 
             // Sets overflow of the parent div to hidden.

@@ -1,4 +1,4 @@
-import { populateBoard } from './build_board.js';
+import { populateBoard } from './controller/build_board.js';
 
 let board = document.getElementById('chessBoard');
 

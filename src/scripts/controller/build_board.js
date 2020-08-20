@@ -30,13 +30,13 @@ const populateBoard = board => {
             square.id = `${coloumnLetter}${z}`;
 
             // Calculates the width and height of the square using the parent div's width as reference.
-            let w = board.getBoundingClientRect().width / 11;
-            square.style.height = `${w}px`;
+            // let w = board.getBoundingClientRect().width / 12;
+            // square.style.height = `${w}px`;
 
             // Sets overflow of the parent div to hidden.
-            board.style.display = 'grid';
+            // board.style.display = 'grid';
             // Adds 'float left' to square's styling.
-            board.style.gridTemplateColumns = `${w}px ${w}px ${w}px ${w}px ${w}px ${w}px ${w}px ${w}px`;
+            // board.style.gridTemplateColumns = `${w}px ${w}px ${w}px ${w}px ${w}px ${w}px ${w}px ${w}px`;
 
             // Appends the square to the board div.
             board.appendChild(square);

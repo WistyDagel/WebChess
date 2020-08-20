@@ -90,6 +90,7 @@ footer {
 
 .board {
     flex: 4;
+    justify-content: center;
 }
 
 .console {

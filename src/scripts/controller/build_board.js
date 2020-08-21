@@ -29,6 +29,9 @@ const populateBoard = board => {
             // Assigns a column number as well as row number to the square's id.
             square.id = `${coloumnLetter}${z}`;
 
+            //Add event listener for when the square is clicked
+            square.onclick = changeState;
+
             // Calculates the width and height of the square using the parent div's width as reference.
             // let w = board.getBoundingClientRect().width / 12;
             // square.style.height = `${w}px`;
@@ -42,6 +45,9 @@ const populateBoard = board => {
             board.appendChild(square);
         }
     }
+
+    //Adds dragula component for each 'sqaure' div - this is so the pieces can be moved accross the board.
+    // dragula([].slice.call(document.querySelectorAll("sqaure")));
 }
 
 const coloumNameAssignment = columnNumber => {
@@ -82,4 +88,29 @@ const coloumNameAssignment = columnNumber => {
     return letter;
 }
 
-export { populateBoard };
+var focusSquare = null;
+
+const changeState = evt => {
+    if(!(evt.target.parentElement.id == "chessBoard")){
+        if(focusSquare){
+            focusSquare.childNodes[0].style.border = "";
+        } 
+    
+        // if(focusSquare.childNodes[0] == evt.target){
+        //     focusSquare = null;
+        // } else {
+        //     focusSquare = evt.target.parentElement;
+        //     focusSquare.childNodes[0].style.border =  "2px solid #06c258";
+    
+        // }
+    
+        focusSquare = evt.target.parentElement;
+        focusSquare.childNodes[0].style.border =  "2px solid #06c258";
+    }    
+}
+
+const getFocusSquare = () => {
+    return focusSquare;
+}
+
+export { populateBoard, getFocusSquare };

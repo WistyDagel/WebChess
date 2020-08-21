@@ -18,25 +18,25 @@ const placePieces = (board) => {
             switch (counter) {
                 case 0:
                     // Gives the img a src.
-                    img.src = `../images/pieces/${s.toUpperCase()}W.svg`;
+                    img.src = `../images/pieces/${s.toUpperCase()}B.svg`;
 
                     board.childNodes[square_counter].appendChild(img);
                     break;
                 case 1:
                     // Gives the img a src.
-                    img.src = `../images/pieces/${s.toUpperCase()}W.svg`;
+                    img.src = `../images/pieces/${s.toUpperCase()}B.svg`;
 
                     board.childNodes[square_counter].appendChild(img);
                     break;
                 case 6:
                     // Gives the img a src.
-                    img.src = `../images/pieces/${s.toUpperCase()}B.svg`;
+                    img.src = `../images/pieces/${s.toUpperCase()}W.svg`;
 
                     board.childNodes[square_counter].appendChild(img);
                     break;
                 case 7:
                     // Gives the img a src.
-                    img.src = `../images/pieces/${s.toUpperCase()}B.svg`;
+                    img.src = `../images/pieces/${s.toUpperCase()}W.svg`;
 
                     board.childNodes[square_counter].appendChild(img);
                     break;
@@ -56,4 +56,8 @@ const placePieces = (board) => {
     });
 }
 
-export { placePieces };
+const getStartingState = () => {
+    return starting_state += ' w KQkq - 0 1';
+}
+
+export { placePieces, getStartingState };

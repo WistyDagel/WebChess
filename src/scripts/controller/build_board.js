@@ -4,7 +4,7 @@ const populateBoard = board => {
     // String that will decide the column letter for each square.
     let coloumnLetter = '';
     // Creates 64 "squares" that will populate the board.
-    for (let i = 0; i < 8; i++) {
+    for (let i = 1; i < 9; i++) {
         // Changes the background boolean to the opposite so that each new row has a different color to start.
         isBackgroundBlack = !isBackgroundBlack;
 
@@ -24,10 +24,10 @@ const populateBoard = board => {
             square.className = 'square';
 
             // Passes in the column number to get back the column letter.
-            coloumnLetter = coloumNameAssignment(i);
+            coloumnLetter = coloumNameAssignment(z);
 
             // Assigns a column number as well as row number to the square's id.
-            square.id = `${coloumnLetter}${z}`;
+            square.id = `${coloumnLetter}${i}`;
 
             // Calculates the width and height of the square using the parent div's width as reference.
             // let w = board.getBoundingClientRect().width / 12;
@@ -50,28 +50,28 @@ const coloumNameAssignment = columnNumber => {
 
     // Switch case to decide the coloum letter.
     switch (columnNumber) {
-        case 0:
+        case 1:
             letter = 'A';
             break;
-        case 1:
+        case 2:
             letter = 'B';
             break;
-        case 2:
+        case 3:
             letter = 'C';
             break;
-        case 3:
+        case 4:
             letter = 'D';
             break;
-        case 4:
+        case 5:
             letter = 'E';
             break;
-        case 5:
+        case 6:
             letter = 'F';
             break;
-        case 6:
+        case 7:
             letter = 'G';
             break;
-        case 7:
+        case 8:
             letter = 'H';
             break;
         default:

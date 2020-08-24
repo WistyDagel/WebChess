@@ -4,7 +4,7 @@ const populateBoard = board => {
     // String that will decide the column letter for each square.
     let coloumnLetter = '';
     // Creates 64 "squares" that will populate the board.
-    for (let i = 1; i < 9; i++) {
+    for (let i = 8; 0 < i; i--) {
         // Changes the background boolean to the opposite so that each new row has a different color to start.
         isBackgroundBlack = !isBackgroundBlack;
 

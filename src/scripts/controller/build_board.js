@@ -105,7 +105,6 @@ const changeState = evt => {
         // }
     
         focusSquare = evt.target.parentElement;
-        focusSquare.childNodes[0].style.border =  "4px solid #e75480";
     }    
 }
 

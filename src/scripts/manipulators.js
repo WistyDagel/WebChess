@@ -1,6 +1,4 @@
-import { Chess } from '../../node_modules/chess.js/chess.js';
-import { getStartingState } from './controller/place_pieces.js';
-const chess = new Chess(getStartingState());
+import { chess } from './chess.js';
 
 // Gets possibls ending locations based on piece color
 // Index 0 is added to the piece column, Index 1 to the row

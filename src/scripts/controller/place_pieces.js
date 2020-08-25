@@ -1,5 +1,5 @@
 // let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/8/RNBQKBNR';
+let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
 
 const placePieces = (board) => {
     // Counter that will keep track of when to place pieces.

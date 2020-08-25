@@ -92,7 +92,7 @@ var focusSquare = null;
 
 const changeState = evt => {
     if(!(evt.target.parentElement.id == "chessBoard")){
-        if(focusSquare){
+        if(focusSquare && focusSquare.childNodes.length != 0){
             focusSquare.childNodes[0].style.border = "";
         } 
     
@@ -105,7 +105,7 @@ const changeState = evt => {
         // }
     
         focusSquare = evt.target.parentElement;
-        focusSquare.childNodes[0].style.border =  "2px solid #06c258";
+        focusSquare.childNodes[0].style.border =  "4px solid #e75480";
     }    
 }
 

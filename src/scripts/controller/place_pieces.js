@@ -1,5 +1,5 @@
 // let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
+let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/8/RNBQKBNR';
 
 const placePieces = (board) => {
     // Counter that will keep track of when to place pieces.
@@ -57,7 +57,8 @@ const placePieces = (board) => {
 }
 
 const getStartingState = () => {
-    return starting_state += ' w KQkq - 0 1';
+    var fen = ' w KQkq - 0 1';
+    return starting_state + fen;
 }
 
 export { placePieces, getStartingState };

@@ -22,6 +22,17 @@ const updateWhiteCaptures = (node) => {
     document.getElementById('whiteCaptures').appendChild(node);
 }
 
+//Captures the target node (piece) and places it in their respective capture zones
+const capture = (square, color) => {
+    let piece = square.childNodes[0];
+    square.removeChild(piece);
+    if(color == 'W'){
+        updateBlackCaptures(piece);
+    } else {
+        updateWhiteCaptures(piece);
+    }
+}
+
 board.onclick = evt => {
     //Resets the styling of the currently activated pieces on the board
     const resetStyling = () => {
@@ -47,15 +58,6 @@ board.onclick = evt => {
     
     let regexPattern = new RegExp('..\/images\/pieces\/([A-Z])(B|W).svg');
     let regexGroupings = regexPattern.exec(focusSquare.childNodes[0].src);
-    
-    var selectedColor = regexGroupings[2];
-
-    // console.log('focus', focusSquare);
-    // console.log('selected', selectedSquare);
-    // console.log('target', targetSquare);
-    // console.log('-----------------------');
-    // console.log(targetSquare.childNodes[0]);
-    // console.log(evt.target.id);
 
     if (targetSquare.childNodes[0] && regexGroupings[2] == turn) {
         resetStyling();
@@ -77,7 +79,6 @@ board.onclick = evt => {
                 }
             });
         }
-
     }
 
     if (possiblePlaces.includes(targetSquare.id) && selected) {
@@ -85,14 +86,16 @@ board.onclick = evt => {
         
         // If the move is a capture, remove the target image first
         if (targetSquare.childNodes[0]) {
-            //Captures the target node (piece) and places it in their respective capture zones
-            var capture = targetSquare.childNodes[0];
-            targetSquare.removeChild(targetSquare.childNodes[0]);
-            if(regexGroupings[2] == 'W'){
-                updateBlackCaptures(capture);
-            } else {
-                updateWhiteCaptures(capture);
-            }
+            capture(targetSquare, regexGroupings[2]);
+        }
+        
+        // En Passant Pawn Capture
+        let passant = chess.fen().split(' ')[3].toUpperCase();
+        if (targetSquare.id == passant) {
+            let manipulator = (regexGroupings[2] == 'W')? [0, -1] : [0, 1];
+            let square = document.getElementById(Manipulator.getRelativeSquareId(passant, manipulator));
+            console.log(square, regexGroupings[2]);
+            capture(square, (regexGroupings[2] == 'W'? 'B' : 'W'));
         }
         
         // Move the piece image from focus square to target square
@@ -103,6 +106,7 @@ board.onclick = evt => {
         // Updates the back-end chess object
         chess.move({ from: selectedSquare.id.toLowerCase(), to: targetSquare.id.toLowerCase() });
         // console.log(chess.ascii());
+        // console.log(chess.fen());
         selected = false;
     }
 }

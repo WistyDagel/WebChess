@@ -5,7 +5,6 @@ import { chess } from './chess.js';
 const getManipulators = (PieceType, pieceColor) => {
     let manipulators = [];
 
-    // TODO Does this work properly?
     switch(PieceType) {
         case "P":
             // TODO debug black pawn movement after turn 1
@@ -199,15 +198,14 @@ const getManipulators = (PieceType, pieceColor) => {
 
 const manipulate = (squareId, manipulators) => {
     let possibleMovesArray = [];
-    let col = squareId.charCodeAt(0); // D 68
+    let col = squareId.charCodeAt(0);
     let row = parseInt(squareId.split('')[1]);
 
     // Iterate over all the coordinate manipulators
     manipulators.forEach(m => {
         // Manipulate the existing coordinate to get possible ending value
         let coordinate = `${String.fromCharCode(col + m[0])}${row + m[1]}`;
-        // console.log(squareId.toLowerCase());
-        // console.log(coordinate.toLowerCase());
+        
         // If valid move
         if (chess.move({ from: squareId.toLowerCase(), to: coordinate.toLowerCase()})) {
             // Undo move
@@ -220,4 +218,10 @@ const manipulate = (squareId, manipulators) => {
     return possibleMovesArray;
 }
 
-export { getManipulators, manipulate };
+const getRelativeSquareId = (squareId, manipulator) => {
+    let col = squareId.charCodeAt(0);
+    let row = parseInt(squareId.split('')[1]);
+    return `${String.fromCharCode(col + manipulator[0])}${row + manipulator[1]}`;
+}
+
+export { getManipulators, manipulate, getRelativeSquareId };

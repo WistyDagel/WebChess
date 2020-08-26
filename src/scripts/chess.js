@@ -37,7 +37,6 @@ board.onclick = evt => {
                 }
             }
         });
-        selected = false;
     }
 
     // Gets the piece that was clicked on.
@@ -104,6 +103,7 @@ board.onclick = evt => {
         // Updates the back-end chess object
         chess.move({ from: selectedSquare.id.toLowerCase(), to: targetSquare.id.toLowerCase() });
         // console.log(chess.ascii());
+        selected = false;
     }
 }
 

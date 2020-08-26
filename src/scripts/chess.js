@@ -8,8 +8,6 @@ let board = document.getElementById('chessBoard');
 
 GameBoard.populateBoard(board);
 Pieces.placePieces(board);
-var blackCaptures = [];
-var whiteCaptures = [];
 var possiblePlaces = [];
 var selectedSquare;
 var selected = false;
@@ -26,10 +24,18 @@ const updateWhiteCaptures = (node) => {
 const capture = (square, color) => {
     let piece = square.childNodes[0];
     square.removeChild(piece);
-    if(color == 'W'){
+    if (color == 'W') {
         updateBlackCaptures(piece);
     } else {
         updateWhiteCaptures(piece);
+    }
+}
+
+const checkForWin = () => {
+    if (chess.game_over()) {
+        var turn = (chess.turn() == 'w')? 'Black' : 'White';
+        alert(`The ${turn} side won!\nThe game is over, please click okay to restart your game.`);
+        location.reload();
     }
 }
 
@@ -63,7 +69,7 @@ board.onclick = evt => {
         resetStyling();
         possiblePlaces = Manipulator.manipulate(focusSquare.id, Manipulator.getManipulators(regexGroupings[1], regexGroupings[2]));
         selectedSquare = focusSquare;
-        selectedSquare.style.border =  "4px solid #e75480";
+        selectedSquare.style.border =  "4px solid #ff1dce";
         selected = true;
         
         //Checks to see the length of the current possible places to move to, this results in a green box for movement and a red box for attacking
@@ -79,6 +85,8 @@ board.onclick = evt => {
                 }
             });
         }
+
+        checkForWin();
     }
 
     if (possiblePlaces.includes(targetSquare.id) && selected) {

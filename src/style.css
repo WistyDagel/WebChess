@@ -106,11 +106,11 @@ footer {
 
 #black {
     flex: 2;
-    background-color: #444;
+    background-color: #555;
 }
 
 #black img {
-    width: 50px;
+    width: 60px;
     height: auto;
 }
 
@@ -120,7 +120,7 @@ footer {
 }
 
 #white img {
-    width: 50px;
+    width: 60px;
     height: auto;
 }
 

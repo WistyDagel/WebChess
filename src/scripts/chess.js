@@ -72,11 +72,13 @@ board.onclick = evt => {
         selectedSquare.style.border =  "4px solid #ff1dce";
         selected = true;
         
+        
         //Checks to see the length of the current possible places to move to, this results in a green box for movement and a red box for attacking
         if (possiblePlaces.length != 0) {
             possiblePlaces.forEach(id => {
                 var element = document.getElementById(id);
-                if(element.childNodes.length != 0) {
+                let passant = chess.fen().split(' ')[3].toUpperCase();
+                if(element.childNodes.length != 0 || id == passant) {
                     //Attacking - Red
                     element.style.border = "4px solid #b53737";
                 } else {

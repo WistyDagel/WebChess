@@ -102,7 +102,6 @@ board.onclick = evt => {
         if (targetSquare.id == passant) {
             let manipulator = (regexGroupings[2] == 'W')? [0, -1] : [0, 1];
             let square = document.getElementById(Manipulator.getRelativeSquareId(passant, manipulator));
-            console.log(square, regexGroupings[2]);
             capture(square, (regexGroupings[2] == 'W'? 'B' : 'W'));
         }
         

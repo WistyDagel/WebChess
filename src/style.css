@@ -106,7 +106,9 @@ footer {
 
 #black {
     flex: 2;
-    background-color: #555;
+    /* background-color: #555; */
+    background-color: #333;
+    color: white;
 }
 
 #black img {

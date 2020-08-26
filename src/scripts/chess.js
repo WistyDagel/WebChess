@@ -8,8 +8,19 @@ let board = document.getElementById('chessBoard');
 
 GameBoard.populateBoard(board);
 Pieces.placePieces(board);
+var blackCaptures = [];
+var whiteCaptures = [];
 var possiblePlaces = [];
 var selectedSquare;
+var selected = false;
+
+const updateBlackCaptures = (node) => {
+    document.getElementById('blackCaptures').appendChild(node);
+}
+
+const updateWhiteCaptures = (node) => {
+    document.getElementById('whiteCaptures').appendChild(node);
+}
 
 board.onclick = evt => {
     //Resets the styling of the currently activated pieces on the board
@@ -26,6 +37,7 @@ board.onclick = evt => {
                 }
             }
         });
+        selected = false;
     }
 
     // Gets the piece that was clicked on.
@@ -51,6 +63,7 @@ board.onclick = evt => {
         possiblePlaces = Manipulator.manipulate(focusSquare.id, Manipulator.getManipulators(regexGroupings[1], regexGroupings[2]));
         selectedSquare = focusSquare;
         selectedSquare.style.border =  "4px solid #e75480";
+        selected = true;
         
         //Checks to see the length of the current possible places to move to, this results in a green box for movement and a red box for attacking
         if (possiblePlaces.length != 0) {
@@ -65,14 +78,22 @@ board.onclick = evt => {
                 }
             });
         }
+
     }
 
-    if (possiblePlaces.includes(targetSquare.id)) {
+    if (possiblePlaces.includes(targetSquare.id) && selected) {
         resetStyling();
         
         // If the move is a capture, remove the target image first
         if (targetSquare.childNodes[0]) {
+            //Captures the target node (piece) and places it in their respective capture zones
+            var capture = targetSquare.childNodes[0];
             targetSquare.removeChild(targetSquare.childNodes[0]);
+            if(regexGroupings[2] == 'W'){
+                updateBlackCaptures(capture);
+            } else {
+                updateWhiteCaptures(capture);
+            }
         }
         
         // Move the piece image from focus square to target square

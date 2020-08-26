@@ -97,11 +97,33 @@ footer {
 
 .console {
     /* flex: 1; */
+    display: flex;
     min-width: 200px;
     width: 20vw;
     height: 94vh;
+    flex-direction: column;
+}
+
+#black {
+    flex: 2;
+    background-color: #444;
+}
+
+#black img {
+    width: 30px;
+    height: auto;
+}
+
+#white {
+    flex: 2;
     background-color: #EEE;
 }
+
+#white img {
+    width: 30px;
+    height: auto;
+}
+
 
 .about {
     flex: 4;

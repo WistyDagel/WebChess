@@ -6,7 +6,6 @@ import { Chess } from '../../node_modules/chess.js/chess.js';
 let gameType = document.getElementById('gameType').innerText;
 var isChess = !gameType.includes('960');
 
-
 let board = document.getElementById('chessBoard');
 
 GameBoard.populateBoard(board);
@@ -18,13 +17,31 @@ var selected = false;
 
 console.log(chess.ascii());
 
+//Adds the pieces to the black's capture point
 const updateBlackCaptures = (node) => {
     document.getElementById('blackCaptures').appendChild(node);
 }
 
+//Adds the pieces to the white's capture point
 const updateWhiteCaptures = (node) => {
     document.getElementById('whiteCaptures').appendChild(node);
 }
+
+//Updates the console with the current turn
+const updateTurn = () => {
+    if(chess.turn() == 'w'){
+        document.getElementById('white').style.boxSizing = "border-box";
+        document.getElementById('white').style.border =  "6px solid #06c258";
+        document.getElementById('black').style.border =  "";
+    } else {
+        document.getElementById('black').style.boxSizing = "border-box";
+        document.getElementById('black').style.border =  "6px solid #06c258";
+        document.getElementById('white').style.border =  "";
+    }
+}
+
+//Sets the initial turn of the game
+updateTurn();
 
 //Captures the target node (piece) and places it in their respective capture zones
 const capture = (square, color) => {
@@ -120,6 +137,7 @@ board.onclick = evt => {
         
         // Updates the back-end chess object
         chess.move({ from: selectedSquare.id.toLowerCase(), to: targetSquare.id.toLowerCase() });
+        updateTurn();
         // console.log(chess.ascii());
         // console.log(chess.fen());
         selected = false;

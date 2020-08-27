@@ -15,9 +15,18 @@
             <a href="chess.html"><div class="button">Chess</div></a>
             <a href="about.html"><div class="button">About</div></a>
         </div>
-        <div class="board"></div>
+        <div class="chessContainer">
+            <div class="board" id='chessBoard'></div>
+        </div>        
         <div class="console">
-            <h3>Console:</h3>
+            <div id="black">
+                <h3 style="text-decoration: underline;">Black Captures</h3>
+                <div id='blackCaptures'></div>
+            </div>
+            <div id="white">
+                <h3 style="text-decoration: underline;">White Captures</h3>
+                <div id='whiteCaptures'></div>
+            </div>
         </div>
     </div>
     <script type='module' src='./scripts/chess960.js'></script>

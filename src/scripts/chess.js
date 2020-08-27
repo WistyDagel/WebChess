@@ -2,15 +2,21 @@ import * as GameBoard from './controller/build_board.js';
 import * as Pieces from './controller/place_pieces.js';
 import * as Manipulator from './manipulators.js';
 import { Chess } from '../../node_modules/chess.js/chess.js';
-const chess = new Chess(Pieces.getStartingState());
+
+let gameType = document.getElementById('gameType').innerText;
+var isChess = !gameType.includes('960');
+
 
 let board = document.getElementById('chessBoard');
 
 GameBoard.populateBoard(board);
-Pieces.placePieces(board);
+Pieces.placePieces(board, isChess);
+const chess = new Chess(Pieces.getStartingState());
 var possiblePlaces = [];
 var selectedSquare;
 var selected = false;
+
+console.log(chess.ascii());
 
 const updateBlackCaptures = (node) => {
     document.getElementById('blackCaptures').appendChild(node);

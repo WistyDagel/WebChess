@@ -1,13 +1,72 @@
+// PREVIOUS CODE USED FOR CHESS 960 PROJECT
+// Between min (inclusive) and max (exclusive)
+const between = (min, max) => {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+// Return a new string where the character at index is replaced by char
+const sub = (string, index, char) => {
+    return `${string.substr(0, index)}${char}${string.substr(index + 1, string.length)}`;
+}
+
+// Returns a list of empty squares in a rank
+const getEmptySquares = string => {
+    let squares = [];
+    for (let i = 0; i < string.length; i++) {
+        if (string.charAt(i) == '-') squares.push(i);
+    }
+    return squares;
+}
+
+// Selects a random empty square in a rank
+const getRandomEmpty = string => {
+    let squares = getEmptySquares(string);
+    return squares[between(0, squares.length)];
+}
+
+//PREVIOUS CODE USED FOR CHESS 960 PROJECT 
+const get960 = () => {
+    // Initialize one rank in FEN
+    // Declare empty rank to hold black pieces
+    let black = '--------';
+
+    // Place bishops randomly in alternate square colors
+    black = sub(black, [0,2,4,6][between(0,4)], 'b');
+    black = sub(black, [1,3,5,7][between(0,4)], 'b');
+
+    // Place queen randomly in empty square
+    black = sub(black, getRandomEmpty(black), 'q')
+
+    // Place knights randomly on empty squares
+    black = sub(black, getRandomEmpty(black), 'n');
+    black = sub(black, getRandomEmpty(black), 'n');
+    
+    // Place king in center of the three remaining squares
+    black = sub(black, getEmptySquares(black)[1], 'k');
+
+    // Place rooks in remaining two squares
+    black = sub(black, getEmptySquares(black)[0], 'r');
+    black = sub(black, getEmptySquares(black)[0], 'r');
+
+    // Convert pieces to white
+    let white = black.toUpperCase();
+
+    return `${black}/pppppppp/8/8/8/8/PPPPPPPP/${white}`;
+}
+
 // let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 let starting_state = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
 
-const placePieces = (board) => {
+const placePieces = (board, isChess) => {
     // Counter that will keep track of when to place pieces.
     let counter = 0;
 
     // Counter that keeps track of the square that is on.
     let square_counter = 0;
 
+    if (!isChess) {
+        starting_state = get960();
+    }
     // Splits the starting state string into 8 pieces and loops through those
     // to place each piece on the board.
     starting_state.split('/').forEach(string => {

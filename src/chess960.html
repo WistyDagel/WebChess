@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../node_modules/dragula/dist/dragula.css"/>
+    <title>Web Chess 960</title>
     <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="container">
         <div class="menu">
-            <h2>Chess 960</h2>
+            <h2 id="gameType">Chess 960</h2>
             <a href="index.html"><div class="button">Home</div></a>
-            <a href="chess.html"><div class="button">Chess</div></a>
+            <a href="chess.html" id="chessbtn"><div class="button">Chess</div></a>
             <a href="about.html"><div class="button">About</div></a>
         </div>
         <div class="chessContainer">
             <div class="board" id='chessBoard'></div>
-        </div>        
+        </div>
         <div class="console">
             <div id="black">
                 <h3 style="text-decoration: underline;">Black Captures</h3>
@@ -29,11 +28,10 @@
             </div>
         </div>
     </div>
-    <script type='module' src='./scripts/chess960.js'></script>
-    <!-- <script src="../node_modules/dragula/dist/dragula.js"></script> -->
+    <script type='module' src='./scripts/chess.js'></script>
 </body>
+<hr/>
 <footer>
-    <hr/>
     <h2>Created by the group - Three Webs No Gaige &copy; 2020</h2>
 </footer>
 </html>
